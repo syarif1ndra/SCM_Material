@@ -11,7 +11,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('user.dashboard'); // Tambahkan nama folder
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Rute untuk pengguna yang sudah login
@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Rute untuk admin yang sudah login
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', 'admin'])->group(callback: function () {
     Route::resource('pengiriman', PengirimanController::class)->names([
         'index' => 'admin.pengiriman.index', // Menetapkan nama rute untuk index
         'create' => 'admin.pengiriman.create',
@@ -31,7 +31,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         'update' => 'admin.pengiriman.update',
         'destroy' => 'admin.pengiriman.destroy'
     ]);
-    Route::get('/admin/dashboard', [HomeController::class, 'index']);
+    Route::get('/admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/pengiriman', [PengirimanController::class, 'index'])->name('admin.pengiriman');
     Route::get('/admin/pengiriman/create', [PengirimanController::class, 'create'])->name('admin.pengiriman.create');
     Route::post('admin/pengiriman/store', [PengirimanController::class,'store'])->name('admin.pengiriman.store');

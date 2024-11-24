@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengirimen', function (Blueprint $table) {
+        Schema::create('pengiriman', function (Blueprint $table) {
             $table->id(); // ID sebagai primary key
             $table->unsignedBigInteger('material_id'); // Menggunakan unsignedBigInteger untuk foreign key material_id
             $table->date('tanggal_kirim'); // Tanggal kirim

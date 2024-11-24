@@ -11,18 +11,23 @@ class PengirimanController extends Controller
 {
     // Ambil data pengiriman dari database
     $pengiriman = Pengiriman::all();
-
-    // Kirim data pengiriman ke view
+    // Kirim data pengiriman ke view dan jumlah pengiriman langsung dihitung di view
     return view('admin.pengiriman.home', compact('pengiriman'));
 }
+
 public function indexForUser()
 {
     // Ambil semua data pengiriman dari database
     $pengiriman = Pengiriman::all();
 
-    // Kirim data pengiriman ke view
-    return view('user.pengiriman.index', compact('pengiriman'));
+    // Hitung jumlah pengiriman
+    $totalPengiriman = $pengiriman->count(); // Menggunakan count() dari koleksi untuk menghitung jumlah
+
+    // Kirim data pengiriman dan jumlah pengiriman ke view
+    return view('user.pengiriman.index', compact('pengiriman', 'totalPengiriman'));
 }
+
+
     public function create(){
         return view('admin.pengiriman.create');
     }

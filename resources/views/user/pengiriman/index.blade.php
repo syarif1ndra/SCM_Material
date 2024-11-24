@@ -1,15 +1,22 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Daftar Pengiriman') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
+@section('header')
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        {{ __('Daftar Pengiriman') }}
+    </h2>
+@endsection
+
+@section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h3 class="text-xl font-semibold">Daftar Pengiriman</h3>
+                    <h3 class="text-xl font-semibold mb-4">Daftar Pengiriman</h3>
+
+                    <!-- Menampilkan jumlah pengiriman -->
+                    <div class="mb-6">
+                        <p class="text-lg font-medium">Jumlah Pengiriman: <span class="text-blue-600">{{ $totalPengiriman }}</span></p>
+                    </div>
 
                     @if($pengiriman->isEmpty())
                         <p>Tidak ada pengiriman yang tersedia.</p>
@@ -41,4 +48,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
